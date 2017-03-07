@@ -8,7 +8,7 @@ defaultModal = ->
   # ensure the modal still fits on small screens
   width = Math.min( $(window).width(), 560)
   return {
-    top: "10%"
+    top: "-30%"
     left: "50%"
     width: width
     "margin-left": -width / 2 # keep the modal centered
@@ -98,10 +98,10 @@ class @TutorialManager
 
   stepCompleted: ->
     @stepDep.depend()
-    # If we were given a reactive function, just run that    
+    # If we were given a reactive function, just run that
     if _.isFunction(func = @steps[@step].require)
       return func()
-    
+
     actionDep = @actionDeps?[@step]
     return true unless actionDep
 
@@ -151,9 +151,9 @@ class @TutorialManager
       elWidth = $el.outerWidth() || parseInt($el.attr("width"))
       elHeight = $el.outerHeight() || parseInt($el.attr("height"))
       offset = $el.offset()
-      
+
       hull.top = Math.min(hull.top, offset.top)
-      hull.left = Math.min(hull.left, offset.left)      
+      hull.left = Math.min(hull.left, offset.left)
       hull.bottom = Math.min(hull.bottom, $(window).height() - offset.top - elHeight)
       hull.right = Math.min(hull.right, $(window).width() - offset.left - elWidth)
 
